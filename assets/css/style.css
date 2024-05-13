@@ -1,0 +1,393 @@
+/* estylos vista alerta */
+
+
+/* Estilos para las notas de colores */
+
+.alert {
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+
+/* Estilos para ocultar el contenido */
+
+.content {
+    display: none;
+    padding: 10px;
+}
+
+#vista-alertas {
+    min-height: 500px;
+}
+
+.badge {
+    margin-left: 5px;
+    /* Espacio entre el número y el texto */
+}
+
+.badge-danger {
+    background-color: #d9534f;
+    /* Color de fondo para las alertas en rojo */
+}
+
+
+/* Fin estilos para el número de alertas */
+
+
+/* Estilos para los elementos de la lista vista slide */
+
+.custom-list-item {
+    background-color: #226f7e;
+    /* Color de fondo */
+    margin-bottom: 10px;
+    /* Espacio entre elementos */
+    border: none;
+    /* Quita el borde */
+    border-radius: 5px;
+    /* Bordes redondeados */
+}
+
+
+/* Estilos para los enlaces dentro de los elementos de la lista */
+
+.custom-link {
+    color: #e9e0e0;
+    /* Color del texto */
+    text-decoration: none;
+    /* Quita la subraya */
+    font-weight: bold;
+    /* Texto en negrita */
+    padding: 10px 20px;
+    /* Espaciado interior */
+    display: block;
+    /* Hace que el enlace ocupe todo el espacio del elemento */
+}
+
+
+/* Fin estilo lista slide */
+
+
+/* Estilos para el formulario */
+
+.custom-form {
+    background-color: #f0f0f0;
+    /* Color de fondo */
+    padding: 20px;
+    /* Espaciado interior */
+    border-radius: 10px;
+    /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+}
+
+
+/* Estilos para los botones */
+
+.custom-btn {
+    background-color: #007bff;
+    /* Color de fondo del botón */
+    color: #fff;
+    /* Color del texto del botón */
+    border: none;
+    /* Quita el borde */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    padding: 10px 20px;
+    /* Espaciado interior */
+    font-weight: bold;
+    /* Texto en negrita */
+    cursor: pointer;
+    /* Cursor de puntero al pasar sobre el botón */
+}
+
+.custom-btn:hover {
+    background-color: #0056b3;
+    /* Cambia el color de fondo al pasar el cursor */
+}
+
+
+/* Fin estilos del formulario */
+
+
+/* estilos de recursos de emergencias */
+
+.emergency-contact {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.emergency-contact h3 {
+    font-size: 24px;
+    margin: 0;
+    padding: 0;
+}
+
+.emergency-phone {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.emergency-description {
+    font-size: 16px;
+    margin: 0;
+}
+
+
+/* Fin de estilos recursos de emergencia */
+
+
+/* Estilo table mis incidencias */
+
+#tabla-incidencias thead {
+    background-color: #373e44;
+    color: white;
+}
+
+#tabla-incidencias_cerrada thead {
+    background-color: #373e44;
+    color: white;
+}
+
+#notas {
+    max-width: 100%;
+    width: 100%;
+}
+
+#tabla-lineas thead {
+    background-color: #373e44;
+    color: white;
+}
+
+#tabla-usuarios thead {
+    background-color: #373e44;
+    color: white;
+}
+
+#tabla-link thead {
+    background-color: #373e44;
+    color: white;
+}
+
+#nota {
+    max-width: 100%;
+    width: 100%;
+}
+
+.modal-header,
+.headerAvance {
+    background: #009688;
+    color: #FFF;
+}
+
+.btn-estado {
+    width: 100px;
+}
+
+
+/* estilo del menu configuracion */
+
+
+/* Estilo para los botones del submenú */
+
+#link+ul li {
+    list-style-type: none;
+    /* Quita los puntos de la lista */
+    margin-bottom: 5px;
+    /* Espacio entre elementos de la lista */
+}
+
+#link+ul li a {
+    display: block;
+    padding: 5px 10px;
+    /* background-color: #007bff; */
+    /* Color de fondo del botón */
+    color: #fff;
+    /* Color del texto (blanco) */
+    text-decoration: none;
+    border-radius: 5px;
+    /* Bordes redondeados */
+}
+
+#link+ul li a:hover {
+    background-color: #0056b3;
+    /* Cambiar color de fondo al pasar el mouse */
+}
+
+.btn-prev,
+.btn-next {
+    color: white;
+}
+
+.personaje {
+    position: absolute;
+    width: 50px;
+    height: 120px;
+    /* Aumentamos la altura para incluir la cabeza y piernas */
+    background-color: transparent;
+    z-index: -1;
+}
+
+.policia {
+    /* Estilos para el policía */
+    background-color: #3366cc;
+    /* Color de la camiseta azul para el policía */
+    border-radius: 15px 15px 0 0;
+    /* Bordes redondeados en la parte superior */
+}
+
+.ladron {
+    /* Estilos para el ladrón */
+    background-color: #cc3366;
+    /* Color de la camiseta roja para el ladrón */
+    border-radius: 15px 15px 0 0;
+    /* Bordes redondeados en la parte superior */
+}
+
+
+/* Estilos para la cabeza */
+
+.personaje::before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    /* Tamaño de la cabeza */
+    height: 30px;
+    background-color: #ffcc33;
+    /* Color de la cabeza */
+    top: 10px;
+    /* Posición superior para la cabeza */
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+}
+
+
+/* Estilos para los brazos */
+
+.personaje::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    /* Ancho de los brazos */
+    height: 70px;
+    /* Altura de los brazos */
+    background-color: #000;
+    /* Color negro para los brazos */
+    top: 30px;
+    /* Posición superior para los brazos */
+}
+
+
+/* Estilos para las piernas */
+
+.personaje::before::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    /* Ancho de las piernas */
+    height: 50px;
+    /* Altura de las piernas */
+    background-color: #000;
+    /* Color negro para las piernas */
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.contenedor {
+    position: relative;
+    width: 200px;
+    /* Ancho del contenedor */
+    height: 200px;
+    /* Altura del contenedor */
+    overflow: hidden;
+}
+
+.personaje {
+    position: absolute;
+    width: 50px;
+    height: 120px;
+    background-color: transparent;
+    z-index: 1;
+    transition: all 0.3s;
+    /* Agrega una transición de 0.3 segundos */
+}
+
+.policia {
+    background-color: #3366cc;
+    border-radius: 15px 15px 0 0;
+}
+
+.ladron {
+    background-color: #cc3366;
+    border-radius: 15px 15px 0 0;
+}
+
+body {
+    background-color: #dbd2d2;
+    /* Cambia el valor al color deseado */
+}
+
+.video-carousel {
+    display: flex;
+    justify-content: center;
+    /* Centra horizontalmente los iframes */
+    align-items: center;
+    /* Centra verticalmente los iframes */
+}
+
+.video-carousel iframe {
+    width: 400px;
+    /* Tamaño deseado para los iframes */
+    height: 280px;
+}
+
+
+/* Oculta el botón en pantallas más grandes */
+
+
+/* Muestra el botón en dispositivos móviles (ancho máximo de 767px) */
+
+@media (max-width: 767px) {
+    .ver-mas {
+        display: block;
+    }
+}
+
+.video-frame {
+    border: 1px solid #f0f0f0;
+    /* Color del borde */
+    background-color: #f0f0f0;
+    /* Color de fondo */
+    padding: 1px;
+    /* Espacio interior alrededor del video */
+    margin: 50 0 0 0;
+    /* Espacio exterior entre los marcos de video */
+    border-radius: 10px 20px 10px 20px;
+    /* Redondeo de esquinas individual (arriba-izquierda, arriba-derecha, abajo-derecha, abajo-izquierda) */
+}
+
+.estado-celda {
+    padding: 8px;
+    /* Ajusta el relleno según tus preferencias */
+}
+
+.estado-finalizado {
+    color: rgb(20, 200, 59);
+    /* Color de texto blanco para mayor contraste */
+    font-weight: bold;
+    /* Texto en negrita */
+    font-size: 12px;
+}
+
+.estado-en-proceso {
+    color: rgb(215, 19, 8);
+    /* Color de texto blanco para mayor contraste */
+    font-weight: bold;
+    /* Texto en negrita */
+    font-size: 12px;
+}

@@ -1,0 +1,7 @@
+body {
+    background-image: url('http://localhost/Seguridad_Ciudadana/assets/img/original.webp');
+    /* Reemplaza 'tu-imagen-de-fondo.jpg' con la URL de tu imagen de fondo */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
