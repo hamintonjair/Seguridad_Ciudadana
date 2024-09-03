@@ -6,7 +6,7 @@
     <title>Sistema de Seguridad Ciudadana</title>
 
     <!-- Api con cuenta hamintonjair -->
-    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh949c4vygKFENV1xGqF1cDfyTcUjST14&callback=initMap"></script> -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh949c4vygKFENV1xGqF1cDfyTcUjST14&callback=initMap"></script>
 
     <link rel = "stylesheet"  href = "<?php echo base_url();?>assets/css/bootstrap.min.css" >
 
