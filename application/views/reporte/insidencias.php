@@ -21,7 +21,7 @@
                     <?php }else{ ?>
                     <div class="form-row">
 
-                        <P>Nota: <font color='red'>"Todos los campos con asterisco son obligatorios;
+                        <P style="text-align: justify;">Nota: <font color='red'>"Todos los campos con asterisco son obligatorios;
                                 Además si deseas hacer seguimiento a las incidencias que reportes,
                                 es importante realizar un registro en la plataforma. Ten en cuenta que tus datos
                                 personales no serán compartidos con nadie, ya que esta información se utilizará
@@ -35,34 +35,33 @@
                             <input type="text" class="form-control valid validText" id="nombre" name="nombre" required>
                         </div>
                         <div class="form-group col-md-6">
-                            <div class="form-check">
+                          
                                 <label for="email">E-mail <font color='red'>*</font></label>
                                 <input type="e-mail" class="form-control valid validEmail" id="email" name="email"
                                     required>
-                            </div>
+                   
                         </div>
                     </div>
-
                     <?php };?>
                     <!-- Tipo de Incidencia y Fecha y Hora de la Incidencia -->
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="tipo_incidencia">Tipo de Incidencia <font color='red'>*</font></label>
                             <select class="form-control" id="tipo_incidencia" name="tipo_incidencia" required>
-                                <option value="accidente_transito">Accidente de transito</option>
-                                <option value="accidente_laborales">Accidentes laborales</option>
-                                <option value="agresion_violencia">Agresión o violencia</option>
+                                <option value="accidente transito">Accidente de transito</option>
+                                <option value="accidente laborales">Accidentes laborales</option>
+                                <option value="agresion o violencia">Agresión o violencia</option>
                                 <option value="amenazas">Amenazas o situaciones de peligro</option>
                                 <option value="desaparición">Desapariciones o personas extraviadas</option>
                                 <option value="desastres">Desastres naturales</option>
                                 <option value="emergencia">Emergencia médica</option>
-                                <option value="incidencia_ambiental">Incidencias ambientales</option>
-                                <option value="incidencia_salud">Incidencias de salud pública</option>
-                                <option value="incidencia_escolares">Incidencias escolares</option>
+                                <option value="incidencia ambiental">Incidencias ambientales</option>
+                                <option value="incidencia salud">Incidencias de salud pública</option>
+                                <option value="incidencia escolares">Incidencias escolares</option>
                                 <option value="incendio">Incendio</option>
-                                <option value="problema_seguridad">Problemas de seguridad pública</option>
-                                <option value="robo_hurto">Robo o hurto</option>
-                                <option value="violencia_ley">Violación de la ley</option>
+                                <option value="problema seguridad publica">Problemas de seguridad pública</option>
+                                <option value="robo hurto">Robo o hurto</option>
+                                <option value="violencia de la ley">Violación de la ley</option>
                                 <option value="vandalismo">Vandalismo</option>
                                 <option value="otro">Otros</option>
                             </select>
@@ -71,22 +70,21 @@
                                     placeholder="Detalles adicionales">
                             </div>
                         </div>
-
                         <div class="form-group col-md-6">
                             <label for="fecha">Fecha de la Incidencia <font color='red'>*</font></label>
                             <input type="date" class="form-control" id="fecha" name="fecha" required>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group  col-md-6">
+                        <div class="form-group col-md-6">
                             <label for="hora">Hora de la Incidencia <font color='red'>*</font></label>
                             <input type="time" class="form-control" id="hora" name="hora" required>
                         </div>
                         <div class="form-group col-md-6">
-                            <div class="form-check">
+                         
                                 <label for="hora">Barrio de la Incidencia <font color='red'>*</font></label>
                                 <input type="text" class="form-control" id="barrio" name="barrio" required>
-                            </div>
+                      
                         </div>
                     </div>
 
@@ -166,9 +164,9 @@
 
                 // Ocultar/mostrar el campo de entrada adicional según la opción seleccionada
                 if (selectedValue === "otro") {
-                    $("#otro_campo").show();
+                    $("#otro campo").show();
                 } else {
-                    $("#otro_campo").hide();
+                    $("#otro campo").hide();
                 }
             });
         });

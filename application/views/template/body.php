@@ -6,7 +6,8 @@
             <h4 style="color:black; text-align: center;">Incidencias por resolver</h4>
 			<br>
                 <!-- Mapa interactivo usando la API de mapas -->
-                <div id="map" style="height: 600px;"></div>
+                <div id="map" style="height:600px;"></div>
+				<br>
             </div>
             
             <script>
