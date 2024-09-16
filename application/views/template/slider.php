@@ -1,3 +1,5 @@
+
+
 <div class="col-md-3">
     <!-- Barra de navegación con iconos y etiquetas -->
     <ul class="list-group">
@@ -91,6 +93,11 @@
                         <i class="fas fa-phone"></i> Recursos de Emergencia
                     </a>
                 </li>
+				<li class="list-group-item custom-list-item">
+                    <a href="<?php echo base_url('recursos/videos'); ?>" class="custom-link">
+                        <i class="fas fa-video"></i> Noticias
+                    </a>
+                </li>
             <?php }
         } else { ?>
             <li class="list-group-item custom-list-item">
@@ -98,6 +105,11 @@
                     <i class="fas fa-phone"></i> Recursos de Emergencia
                 </a>
             </li>
+			<li class="list-group-item custom-list-item">
+                    <a href="<?php echo base_url('recursos/videos'); ?>" class="custom-link">
+                        <i class="fas fa-video"></i> Videos
+                    </a>
+                </li>
         <?php }; ?>
         <?php
         if (!empty($validado)) { ?>
@@ -131,7 +143,7 @@
                         <?php } ?>
                         <li><a href="<?php echo base_url('configuracion/link'); ?>"><i class="fas fa-link"></i> Ver enlaces
                                 de YouTube</a></li>
-                        <li><a href="#"><i class="fas fa-user-cog"></i> Perfil</a></li>
+                        <!-- <li><a href="#"><i class="fas fa-user-cog"></i> Perfil</a></li> -->
                     </ul>
 
                 </li>
@@ -148,6 +160,7 @@
         <?php }
         }; ?>
     </ul>
+	
     <!-- <div class="form-group">
         <button id="obtener-ubicacion" type="button" class="btn btn-primary" id="obtener-ubicacion">Obtener Ubicación
             Actual</button>

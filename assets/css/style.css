@@ -102,7 +102,7 @@
 }
 
 .custom-btn:hover {
-    background-color: #0056b3;
+    background-color: #9f6431;
     /* Cambia el color de fondo al pasar el cursor */
 }
 
@@ -213,7 +213,7 @@
 }
 
 #link+ul li a:hover {
-    background-color: #0056b3;
+    background-color: #9f6431;
     /* Cambiar color de fondo al pasar el mouse */
 }
 

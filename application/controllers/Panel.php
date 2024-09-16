@@ -3,7 +3,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Panel extends CI_Controller
 {
-
     function __construct()
     {
         // session_start();
@@ -13,11 +12,11 @@ class Panel extends CI_Controller
 
     public function index()
     {
-        $data['link'] = $this->ModelReporte->listar_link();
+        
         $this->load->view('template/header');
         $this->load->view('template/nabvar');
         $this->load->view('template/body');
-        $this->load->view('template/slider', $data);
+        $this->load->view('template/slider');
         $this->load->view('template/footer');
     }
     //reportar incidencias
@@ -25,10 +24,10 @@ class Panel extends CI_Controller
     public function insidencias()
     {
 
-        $data['link'] = $this->ModelReporte->listar_link();
+        
         $this->load->view('template/header');
         $this->load->view('template/nabvar');
-        $this->load->view('reporte/insidencias', $data);
+        $this->load->view('reporte/insidencias');
         $this->load->view('template/slider');
         $this->load->view('template/footer');
     }
@@ -125,11 +124,11 @@ class Panel extends CI_Controller
         $incidenciasSinUsuario = $this->ModelReporte->get_Incidencias();
         $incidenciasConUsuario = $this->ModelReporte->get_Incidenciass();
         $dato['alertas'] = array_merge($incidenciasSinUsuario, $incidenciasConUsuario);
-        $data['link'] = $this->ModelReporte->listar_link();
+        
         $this->load->view('template/header');
         $this->load->view('template/nabvar');
         $this->load->view('reporte/alert', $dato);
-        $this->load->view('template/slider', $data);
+        $this->load->view('template/slider');
         $this->load->view('template/footer');
     }
     // estadisticas
@@ -137,11 +136,11 @@ class Panel extends CI_Controller
     public function estadisticas()
     {
         // $datos[ 'datos' ] = $this->ModelReporte->obtenerCantidadIncidenciasPorMes();
-        $data['link'] = $this->ModelReporte->listar_link();
+        
         $this->load->view('template/header');
         $this->load->view('template/nabvar');
         $this->load->view('reporte/estadisticas');
-        $this->load->view('template/slider', $data);
+        $this->load->view('template/slider');
         $this->load->view('template/footer');
     }
     //finalizar incidencias
@@ -174,14 +173,13 @@ class Panel extends CI_Controller
 
     public function getMap()
     {
-        $dato['link'] = $this->ModelReporte->listar_link();
         $latitud = $this->input->get('latitud');
         $longitud = $this->input->get('longitud');
         $data['map'] = array('lat' => $latitud, 'lng' => $longitud);
         $this->load->view('template/header');
         $this->load->view('template/nabvar');
         $this->load->view('reporte/mapa', $data);
-        $this->load->view('template/slider', $dato);
+        $this->load->view('template/slider');
         $this->load->view('template/footer');
     }
     //obtenercantidad d ealertas
@@ -200,11 +198,10 @@ class Panel extends CI_Controller
     public function recursos_emergencias()
     {
         $data['lineas'] = $this->ModelReporte->listar_lineas();
-        $dato['link'] = $this->ModelReporte->listar_link();
         $this->load->view('template/header');
         $this->load->view('template/nabvar');
         $this->load->view('reporte/emergencia', $data);
-        $this->load->view('template/slider', $dato);
+        $this->load->view('template/slider');
         $this->load->view('template/footer');
     }
     //listar incidencias
@@ -212,16 +209,14 @@ class Panel extends CI_Controller
 
     public function mis_incidencias()
     {
-
         $validado = $this->ModelReporte->get_Session();
         $idUsuario  = $validado[0]->idUsuario;
 
         $data['incidencias'] = $this->ModelReporte->get_Incidencia($idUsuario);
-        $dato['link'] = $this->ModelReporte->listar_link();
         $this->load->view('template/header');
         $this->load->view('template/nabvar');
         $this->load->view('reporte/mis_incidencias', $data);
-        $this->load->view('template/slider', $dato);
+        $this->load->view('template/slider');
         $this->load->view('template/footer');
     }
     public function getIncidenciasGraf()
@@ -266,11 +261,11 @@ class Panel extends CI_Controller
         $dato['usuarios'] = $this->ModelReporte->get_usuarios();
 
         // var_dump($dato);exit;
-        $data['link'] = $this->ModelReporte->listar_link();
+        
         $this->load->view('template/header');
         $this->load->view('template/nabvar');
         $this->load->view('reporte/listar_usuario', $dato);
-        $this->load->view('template/slider', $data);
+        $this->load->view('template/slider');
         $this->load->view('template/footer');
     }
     //registro de avances
@@ -308,50 +303,56 @@ class Panel extends CI_Controller
     public function incidencias_cerradas()
     {
         $data['incidencias'] = $this->ModelReporte->get_Incidencia_cerradas();
-        $dato['link'] = $this->ModelReporte->listar_link();
         $this->load->view('template/header');
         $this->load->view('template/nabvar');
         $this->load->view('reporte/incidencias_cerradas', $data);
-        $this->load->view('template/slider', $dato);
+        $this->load->view('template/slider');
         $this->load->view('template/footer');
     }
     // ver mas detalles incicdencias cerradas
     public function ver_Mas($id)
     {
-
         $data = $this->ModelReporte->ver_Mas($id);
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
     }
     public function listar_lineas()
     {
         $data['lineas'] = $this->ModelReporte->listar_lineas();
-        $dato['link'] = $this->ModelReporte->listar_link();
         $this->load->view('template/header');
         $this->load->view('template/nabvar');
         $this->load->view('reporte/listar_lineas', $data);
-        $this->load->view('template/slider', $dato);
+        $this->load->view('template/slider');
         $this->load->view('template/footer');
     }
     // vista lineas de emergencias
 
     public function vista_lineas_emergencias()
     {
-        $data['link'] = $this->ModelReporte->listar_link();
+        
         $this->load->view('template/header');
         $this->load->view('template/nabvar');
         $this->load->view('reporte/registro_lineas_emergencia');
-        $this->load->view('template/slider', $data);
+        $this->load->view('template/slider');
         $this->load->view('template/footer');
     }
     // registrar lineas de emergencias
-
     public function registrar_lineas()
     {
-        $data['link'] = $this->ModelReporte->listar_link();
+        
         $this->load->view('template/header');
         $this->load->view('template/nabvar');
         $this->load->view('reporte/registro_lineas_emergencia');
-        $this->load->view('template/slider', $data);
+        $this->load->view('template/slider');
+        $this->load->view('template/footer');
+    }
+	// video
+	public function videos()
+    {
+		$data['link'] = $this->ModelReporte->listar_link();
+        $this->load->view('template/header');
+        $this->load->view('template/nabvar');
+        $this->load->view('reporte/video',$data);
+        $this->load->view('template/slider');
         $this->load->view('template/footer');
     }
     // registrar usuario
@@ -381,7 +382,6 @@ class Panel extends CI_Controller
 
     public function Eliminar_linea($id)
     {
-
         $eliminado = $this->ModelReporte->eliminar_linea($id);
         if ($eliminado) {
             $msg = (array('ok' => true, 'post' => 'Línea eliminada con éxito.'));
@@ -392,18 +392,15 @@ class Panel extends CI_Controller
         die();
     }
     //   vista link
-
     public function vista_link()
     {
-        $data['link'] = $this->ModelReporte->listar_link();
         $this->load->view('template/header');
         $this->load->view('template/nabvar');
         $this->load->view('reporte/link');
-        $this->load->view('template/slider', $data);
+        $this->load->view('template/slider');
         $this->load->view('template/footer');
     }
     // insertar link de casos
-
     public function set_link()
     {
 
@@ -419,7 +416,6 @@ class Panel extends CI_Controller
         die();
     }
     // eliminar link youtube
-
     public function Eliminar_link($id)
     {
         $eliminado = $this->ModelReporte->eliminar_link($id);
@@ -432,25 +428,23 @@ class Panel extends CI_Controller
         die();
     }
     //   vista link
-
     public function listar_link()
     {
-        $data['link'] = $this->ModelReporte->listar_link();
+		$dato['link'] = $this->ModelReporte->listar_link();
         $this->load->view('template/header');
         $this->load->view('template/nabvar');
-        $this->load->view('reporte/listar_link', $data);
-        $this->load->view('template/slider', $data);
+        $this->load->view('reporte/listar_link',$dato);
+        $this->load->view('template/slider');
         $this->load->view('template/footer');
     }
     // vista usuario
-
     public function vista_usuario()
     {
-        $data['link'] = $this->ModelReporte->listar_link();
+        
         $this->load->view('template/header');
         $this->load->view('template/nabvar');
         $this->load->view('reporte/registrar_usuario');
-        $this->load->view('template/slider', $data);
+        $this->load->view('template/slider');
         $this->load->view('template/footer');
     }
     // eliminar usuario
@@ -466,7 +460,6 @@ class Panel extends CI_Controller
         die();
     }
     //cerrar session
-
     public function logout()
     {
         $validado = $this->ModelReporte->get_Session();

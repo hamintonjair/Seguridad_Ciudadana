@@ -1,9 +1,9 @@
 <main>
     <div class="container mt-5">
         <div class="row justify-content-center">
-            <div style="background-color:#f0f0f0;" id="vista-alertas" style="text-align: center;" class="col-md-6">
+            <div style="background-color:#f0f0f0; text-align: center; border-radius:30px; " id="vista-alertas" class="col-md-9">
             <br>
-                <h4 style="background-color:#226f7e; color:aliceblue">link videos de youtube</h4>
+                <h4 style="background-color:#f0f0f0; color:black">link videos de youtube</h4>
                 <?php
                     $this->load->model( 'ModelReporte' );
                         $validado = $this->ModelReporte->get_Session(); 

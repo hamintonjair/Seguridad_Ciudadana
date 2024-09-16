@@ -2,9 +2,9 @@
 
     <div class="container mt-5">
         <div class="row">
-            <div style="background-color:#f0f0f0;" id="vista-alertas" class="col-md-9">
+            <div style="background-color:#f0f0f0; border-radius:30px;" id="vista-alertas" class="col-md-9">
             <br>
-                <h4 style="background-color:#226f7e; color:aliceblue; text-align: center;">Alertas de Incidencias</h4>
+                <h4 style="color:black; text-align: center;">Alertas de Incidencias</h4>
                 <br>
                 <!-- Recorre y muestra las alertas de forma dinámica -->
                 <?php foreach ($alertas as $alerta): ?>

@@ -2,9 +2,9 @@
 
     <div class="container mt-5">
         <div class="row">
-            <div style="background-color:#f0f0f0;" class="col-md-9">
+            <div style="background-color:#f0f0f0;  border-radius:30px;"" class="col-md-9">
             <br>
-                <h4 style="background-color:#226f7e; color:aliceblue; text-align: center;">Reporte de Incidencia</h4>
+                <h4 style="color:black; text-align: center; ">Reporte de Incidencia</h4>
                 <br>
                 <form id="formIncidencias" enctype="multipart/form-data" class="custom-form">
                     <!-- corrego y clave -->

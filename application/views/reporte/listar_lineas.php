@@ -1,9 +1,9 @@
 <main>
     <div class="container mt-5">
         <div class="row">
-            <div style="background-color:#f0f0f0;" id="vista-alertas" style="text-align: center;" class="col-md-9">
+            <div style="background-color:#f0f0f0; border-radius:30px; " id="vista-alertas"class="col-md-9">
             <br>
-                <h4 style="background-color:#226f7e; color:aliceblue">Registrar líeas & link</h4>
+                <h4 style="color:black;text-align: center;">Registrar líeas & link</h4>
                 <br>
                 <table id="tabla-lineas" class="display" style="width:100%">
                     <!-- Encabezados de la tabla -->

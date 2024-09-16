@@ -1,15 +1,15 @@
 <main>
     <div class="container mt-5">
         <div class="row justify-content-center">
-            <div style="background-color:#f0f0f0;" id="vista-alertas" style="text-align: center;" class="col-md-6">
+            <div style="background-color:#f0f0f0; border-radius:30px; " id="vista-alertas" class="col-md-9">
             <br>
-                <h4 style="background-color:#226f7e; color:aliceblue">Registrar link videos de youtube</h4>
+                <h4 style="color:black; text-align: center;">Registrar link videos de youtube</h4>
 
-                <div class="card" style="background-color:#226f7e; color:aliceblue;">
+                <div class="card" style="background-color:#f0f0f0; color:aliceblue;">
                     <!-- <div class="card-header" style="background-color:#226f7e; color:aliceblue; text-align: center;" >Registro de lineas de emergencias</div> -->
                     <div class="card-body">
                         <div class="col-md-12">
-                            <font color="yellow">Nota: "En este campo vas a guardar la clave que te genera el video
+                            <font color="blue">Nota: "En este campo vas a guardar la clave que te genera el video
                                 cargado en YouTube, de la URL vas a tomar la parte que resalta."</font>
                         </div>
                         <div class="col-md-12">

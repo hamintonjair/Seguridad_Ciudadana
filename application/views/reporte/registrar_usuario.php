@@ -1,13 +1,13 @@
 <main>
     <div class="container mt-5">
         <div class="row justify-content-center">
-            <div style="background-color:#f0f0f0;" id="vista-alertas" class="col-md-6">
+            <div style="background-color:#f0f0f0; border-radius:30px; " id="vista-alertas" class="col-md-9">
             <br>
-                <h4 style="background-color:#226f7e; color:aliceblue; text-align: center;">Registrar nuevo usuario</h4>
+                <h4 style="color:black; text-align: center;">Registrar nuevo usuario</h4>
 
-                <div class="card" style="background-color:#226f7e; color:aliceblue;">
+                <div class="card" style="background-color:#f0f0f0; color:aliceblue;">
                     <div class="card-body">
-                        <font color="yellow">Nota: "Los usuarios registrados tendrán un perfil de operador."</font>
+                        <font color="blue">Nota: "Los usuarios registrados tendrán un perfil de operador."</font>
 
                         <form enctype="multipart/form-data" id="frmRegistro">
                             <div class="form-group">

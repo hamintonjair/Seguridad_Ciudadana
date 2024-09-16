@@ -53,6 +53,8 @@ $route['default_controller'] = 'panel';
 $route['reportar/incidencia'] = 'panel/insidencias';
 $route['ver/alert'] = 'panel/alertas';
 $route['recursos/emergencias'] = 'panel/recursos_emergencias';
+$route['recursos/videos'] = 'panel/videos';
+
 $route['mis/incidencias'] = 'panel/mis_incidencias';
 $route['incidencias/cerradas'] = 'panel/incidencias_cerradas';
 $route['incidencias/estadisticas'] = 'panel/estadisticas';
