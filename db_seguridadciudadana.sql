@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-05-2024 a las 23:09:23
+-- Tiempo de generación: 19-09-2024 a las 18:36:11
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.1.25
 
@@ -51,17 +51,21 @@ CREATE TABLE `incidencias` (
 --
 
 INSERT INTO `incidencias` (`id`, `tipo_incidencia`, `fecha`, `hora`, `barrio`, `descripcion`, `latitud`, `longitud`, `imagen`, `nivel_urgencia`, `idUsuario`, `nota`, `estado`, `fecha_finalizacion`, `nombre`, `correo`) VALUES
-(1, 'robo', '2024-02-04', '13:22', 'Buenos aires', 'prueba', '5.686211127732348', '-76.65610649484718', '20231004202227_MicrosoftTeams-image_(3).png', 'bajo', 2, 'Se envío patrulla al lugar de los hechos a revisar lo sucedido ,\n04/10/2023 se logro capturar a los implicados en el robo, esta conformado por un grupo de 4 personas donde 3 de ellos son hombres en los 18 y 25 años y una mujer entre 30 y 38 años, fueron puesto ante la fiscxalía general de la nación.', 'Finalizada', '2023-10-04 23:35:28', NULL, NULL),
-(3, 'agresion', '2023-03-11', '17:08', 'prueba', 'prueba', '5.686208636494454', '-76.65610436700142', '20231005000833_MicrosoftTeams-image_(1).png', 'bajo', NULL, NULL, 'Finalizada', '2023-10-05 00:10:47', NULL, NULL),
+(1, 'robo/hurto', '2024-02-04', '13:22', 'Buenos aires', 'prueba', '5.686211127732348', '-76.65610649484718', '20231004202227_MicrosoftTeams-image_(3).png', 'bajo', 2, 'Se envío patrulla al lugar de los hechos a revisar lo sucedido ,\n04/10/2023 se logro capturar a los implicados en el robo, esta conformado por un grupo de 4 personas donde 3 de ellos son hombres en los 18 y 25 años y una mujer entre 30 y 38 años, fueron puesto ante la fiscxalía general de la nación.', 'Finalizada', '2023-10-04 23:35:28', NULL, NULL),
+(3, 'vandalismo', '2023-03-11', '17:08', 'prueba', 'prueba', '5.686208636494454', '-76.65610436700142', '20231005000833_MicrosoftTeams-image_(1).png', 'bajo', NULL, NULL, 'Finalizada', '2023-10-05 00:10:47', NULL, NULL),
 (4, 'vandalismo', '2023-10-04', '17:12', 'Medrano', 'prueba', '5.686211127732348', '-76.65610649484718', '20231005001244_MicrosoftTeams-image_(3).png', 'bajo', 2, '04/10/2023 se realizaron pruebas', 'Finalizada', '2023-10-05 00:15:22', NULL, NULL),
-(5, 'robo', '2023-05-05', '10:41', 'palenque', 'prueba', '5.0561024', '-75.4843648', '20231005174319_MicrosoftTeams-image_(3).png', 'bajo', NULL, '05/10/2023 se envío una patrulla al lugar de los hechos.', 'Finalizada', '2023-10-05 17:46:57', NULL, NULL),
-(6, 'robo', '2023-10-05', '17:58', 'palenque', 'prueba', '5.6851847', '-76.6602155', '20231006005834_MicrosoftTeams-image_(1).png', 'bajo', NULL, '03/10/2023 se envio una patrulla al lugar del incidente\n05/10/2023 se capturaron a los implicados y estan puesto ante la fiscalía general de la nacion', 'Finalizada', '2023-10-06 01:02:01', NULL, NULL),
-(7, 'agresion', '2023-10-10', '17:47', 'entrada a sanvicente', 'prueba', '5.68537475', '-76.66020925', '20231011004754_MenaCode.png', 'bajo', NULL, '10-10-2023 se envio una patrulla al lugar de los echos\n11-10-2023 se se capturaron a los implicados del hurto calificado', 'Finalizada', '2023-10-11 00:51:07', NULL, NULL),
+(5, 'robo/hurto', '2023-05-05', '10:41', 'palenque', 'prueba', '5.0561024', '-75.4843648', '20231005174319_MicrosoftTeams-image_(3).png', 'bajo', NULL, '05/10/2023 se envío una patrulla al lugar de los hechos.', 'Finalizada', '2023-10-05 17:46:57', NULL, NULL),
+(6, 'robo/hurto', '2023-10-05', '17:58', 'palenque', 'prueba', '5.6851847', '-76.6602155', '20231006005834_MicrosoftTeams-image_(1).png', 'bajo', NULL, '03/10/2023 se envio una patrulla al lugar del incidente\n05/10/2023 se capturaron a los implicados y estan puesto ante la fiscalía general de la nacion', 'Finalizada', '2023-10-06 01:02:01', NULL, NULL),
+(7, 'vandalismo', '2023-10-10', '17:47', 'entrada a sanvicente', 'prueba', '5.68537475', '-76.66020925', '20231011004754_MenaCode.png', 'bajo', NULL, '10-10-2023 se envio una patrulla al lugar de los echos\n11-10-2023 se se capturaron a los implicados del hurto calificado', 'Finalizada', '2023-10-11 00:51:07', NULL, NULL),
 (8, 'emergencia', '2023-10-14', '18:38', 'aurora', 'Anciano del barrio requiere de atención médica, se necesita que se envié una ambulancia lo mas rápido posible', '5.686214', '-76.656109', '20231015014325_MicrosoftTeams-image.png', 'medio', 2, NULL, 'En proceso', NULL, NULL, NULL),
-(9, 'incendio', '2024-11-19', '15:25', 'medrano', 'prueba', '5.6828574', '-76.6470809', 'default.png', 'alto', NULL, 'hhh', 'Finalizada', '2023-10-19 23:49:23', 'Haminton Mena Mena', 'hamintonjair@gmail.com'),
-(10, 'robo_hurto', '2023-11-07', '19:23', 'Sanvicente', 'dos personas llegaron a la universidad con arma de fuego y amenazaron a unos estudiantes', '5.685010399495082', '-76.66021434063549', '20231108012915_Captura_de_pantalla_2023-05-12_085937.png', 'alto', NULL, NULL, 'Finalizada', '2024-04-01 02:07:43', 'horacio palacios', 'mafia00796@hotmail.com'),
-(18, 'otro_campo_input', '2024-01-28', '14:44', 'Sanvicente', 'prueba', '5.705606083455933', '-76.6585695455337', 'default.png', 'medio', 2, NULL, 'Finalizada', '2024-04-01 02:07:07', 'Haminton Mena Mena', 'mafia00796@hotmail.com'),
-(19, 'accidente_transito', '2024-01-28', '14:46', 'Medrano', 'prueba', '5.704328560435225', '-76.6523474043015', 'default.png', 'alto', 2, 'prueba', 'Finalizada', '2024-01-29 00:49:17', 'Haminton Mena Mena', 'mafia00796@hotmail.com');
+(9, 'incendio', '2024-09-19', '15:25', 'Medrano', 'prueba', '5.6828574', '-76.6470809', 'default.png', 'alto', NULL, 'hhh', 'Finalizada', '2023-10-19 23:49:23', 'Haminton Mena Mena', 'hamintonjair@gmail.com'),
+(10, 'robo/hurto', '2023-11-07', '19:23', 'Sanvicente', 'dos personas llegaron a la universidad con arma de fuego y amenazaron a unos estudiantes', '5.685010399495082', '-76.66021434063549', '20231108012915_Captura_de_pantalla_2023-05-12_085937.png', 'alto', NULL, NULL, 'Finalizada', '2024-04-01 02:07:43', 'horacio palacios', 'mafia00796@hotmail.com'),
+(18, 'otro', '2024-01-28', '14:44', 'Sanvicente', 'prueba', '5.705606083455933', '-76.6585695455337', 'default.png', 'medio', 2, NULL, 'Finalizada', '2024-04-01 02:07:07', 'Haminton Mena Mena', 'mafia00796@hotmail.com'),
+(19, 'accidente transito', '2024-01-28', '14:46', 'Medrano', 'prueba', '5.704328560435225', '-76.6523474043015', 'default.png', 'alto', 2, 'prueba', 'Finalizada', '2024-01-29 00:49:17', 'Haminton Mena Mena', 'mafia00796@hotmail.com'),
+(20, 'robo/hurto', '2024-09-09', '16:21', 'Sanvicente', 'Dos personas llegaron con arma de fuego y le dispararon a un señor', '5.685261919659202', '-76.6602130358422', 'default.png', 'alto', NULL, '09/09/2024 se envio un patrullero al lugar de los hechos', 'Finalizada', '2024-09-09 23:28:15', 'Haminton Jair Mena Mena', 'hamintonjair@gmail.com'),
+(21, 'accidente laborales', '2024-09-15', '09:21', 'Buenos aires', 'prueba ', '5.704857950511639', '-76.65285715584838', '20240916162208_Autoliquidaciones_72703939_Consolidado_page-0001.jpg', 'bajo', NULL, NULL, 'Finalizada', '2024-09-19 23:28:15', 'Duvan Mateo Mena', 'duvan3374@gmail.com'),
+(22, 'accidente laborales', '2024-09-15', '09:21', 'Buenos aires', 'prueba ', '5.704857950511639', '-76.65285715584838', '20240916162617_Autoliquidaciones_72703939_Consolidado_page-0001.jpg', 'bajo', NULL, NULL, 'Finalizada', '2024-09-14 23:28:15', 'Duvan Mateo Mena', 'duvan3374@gmail.com'),
+(23, 'robo/hurto', '2024-09-15', '09:26', 'Buenos aires', 'prueba', '5.70506537785176', '-76.65299926593006', '20240916162702_Autoliquidaciones_72703939_Consolidado_page-0001.jpg', 'bajo', NULL, NULL, 'En proceso', NULL, 'Duvan Mateo Mena', 'duvan3374@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -104,7 +108,14 @@ CREATE TABLE `link` (
 INSERT INTO `link` (`id`, `url`) VALUES
 (2, '8nHCWRtWam0'),
 (3, 'DBF8iAEejVU'),
-(4, 'LZgqXsGJQ7Y');
+(4, 'LZgqXsGJQ7Y'),
+(6, 'wULPW2oIVhQ'),
+(7, 'erQx6BemELQ'),
+(8, 'd2fNv2D_kVI'),
+(9, 'znVLDo_kyIc'),
+(10, 'RDNSznVLDo_kyIc'),
+(11, 'RDNSznVLDo_kyIc'),
+(12, 'RDNSznVLDo_kyIc');
 
 -- --------------------------------------------------------
 
@@ -186,7 +197,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `incidencias`
 --
 ALTER TABLE `incidencias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `lineas_emergencias`
@@ -198,13 +209,13 @@ ALTER TABLE `lineas_emergencias`
 -- AUTO_INCREMENT de la tabla `link`
 --
 ALTER TABLE `link`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `session_temporal`
 --
 ALTER TABLE `session_temporal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
