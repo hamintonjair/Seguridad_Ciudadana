@@ -58,6 +58,9 @@ $route['recursos/videos'] = 'panel/videos';
 $route['mis/incidencias'] = 'panel/mis_incidencias';
 $route['incidencias/cerradas'] = 'panel/incidencias_cerradas';
 $route['incidencias/estadisticas'] = 'panel/estadisticas';
+$route['incidencias/patrones_barrios'] = 'panel/patrones_barrios';
+$route['incidencias/patrones_tipos'] = 'panel/patrones_tipos';
+
 $route['login'] = 'login/login';
 $route['registro-nuevo-usuario'] = 'login/registro_user';
 $route['configuracion/listar_lineas'] = 'panel/listar_lineas';

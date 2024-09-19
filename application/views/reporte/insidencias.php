@@ -60,7 +60,7 @@
                                 <option value="incidencia escolares">Incidencias escolares</option>
                                 <option value="incendio">Incendio</option>
                                 <option value="problema seguridad publica">Problemas de seguridad pública</option>
-                                <option value="robo hurto">Robo o hurto</option>
+                                <option value="robo/hurto">Robo/hurto</option>
                                 <option value="violencia de la ley">Violación de la ley</option>
                                 <option value="vandalismo">Vandalismo</option>
                                 <option value="otro">Otros</option>
