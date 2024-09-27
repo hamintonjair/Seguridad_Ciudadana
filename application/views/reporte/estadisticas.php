@@ -181,12 +181,18 @@
 						type: 'GET',
 						dataType: 'json',
 						success: function(resultado) {
-							// Después de crear el gráfico, ocultar el mensaje de carga y mostrar un mensaje de confirmación
+														// Después de obtener las URLs de los PDFs, ocultar el mensaje de carga y mostrar un mensaje de confirmación
 							Swal.fire({
 								title: 'Generado PDF',
-								text: 'Se ha generando el PDF con las gráficas para el analisis.',
+								text: 'Se han generado los PDFs con las gráficas para el análisis.',
 								showConfirmButton: true
-
+							}).then(() => {
+								// Abrir los PDF en nuevas pestañas
+							
+								if (resultado.predicciones.datos.pdf1_url && resultado.predicciones.datos.pdf2_url) {
+									window.open(resultado.predicciones.datos.pdf1_url, '_blank');
+									window.open(resultado.predicciones.datos.pdf2_url, '_blank');
+								}
 							});
 						},
 						error: function(error) {
@@ -200,7 +206,8 @@
 					});
 				});
 
-				
+
+
 				// para oculyat los botones
 				document.getElementById('generarPdf').addEventListener('click', function() {
 					document.getElementById('reportesPatronesBarrios').style.display = 'inline-block';
@@ -212,9 +219,9 @@
 				});
 				document.getElementById('reportesPatronesTipo').addEventListener('click', function() {
 					const base_url = 'http://localhost/Seguridad_Ciudadana/';
-					window.open( base_url + 'incidencias/patrones_tipos', '_blank');
+					window.open(base_url + 'incidencias/patrones_tipos', '_blank');
 
 					// Muestra el mensaje de carga
-				
+
 				});
 			</script>
