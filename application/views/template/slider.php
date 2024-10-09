@@ -106,7 +106,7 @@
 			</li>
 			<li class="list-group-item custom-list-item">
 				<a href="<?php echo base_url('recursos/videos'); ?>" class="custom-link">
-					<i class="fas fa-video"></i> Videos
+					<i class="fas fa-video"></i> Noticias
 				</a>
 			</li>
 		<?php }; ?>
