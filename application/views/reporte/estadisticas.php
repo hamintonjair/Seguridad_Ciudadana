@@ -181,6 +181,7 @@
 						url: base_url + 'panel/getDatosEstadisticasYPredicciones/',
 						type: 'GET',
 						dataType: 'json',
+<<<<<<< HEAD
 						success: function(response) {
 							if (response.predicciones && response.predicciones.datos) {
 								const {
@@ -218,6 +219,22 @@
 									showConfirmButton: true
 								});
 							}
+=======
+						success: function(resultado) {
+														// Después de obtener las URLs de los PDFs, ocultar el mensaje de carga y mostrar un mensaje de confirmación
+							Swal.fire({
+								title: 'Generado PDF',
+								text: 'Se han generado los PDFs con las gráficas para el análisis.',
+								showConfirmButton: true
+							}).then(() => {
+								// Abrir los PDF en nuevas pestañas
+							
+								if (resultado.predicciones.datos.pdf1_url && resultado.predicciones.datos.pdf2_url) {
+									window.open(resultado.predicciones.datos.pdf1_url, '_blank');
+									window.open(resultado.predicciones.datos.pdf2_url, '_blank');
+								}
+							});
+>>>>>>> c7656391e3640500f149c8f89428c702d686e55c
 						},
 						error: function(xhr, status, error) {
 							let errorMessage = 'Error al generar las gráficas.';
@@ -236,11 +253,18 @@
 					});
 				});
 
+<<<<<<< HEAD
 				// Opcional: Mostrar u ocultar botones después de generar PDFs
+=======
+
+
+				// para oculyat los botones
+>>>>>>> c7656391e3640500f149c8f89428c702d686e55c
 				document.getElementById('generarPdf').addEventListener('click', function() {
 					document.getElementById('reportesPatronesBarrios').style.display = 'inline-block';
 					document.getElementById('reportesPatronesTipo').style.display = 'inline-block';
 				});
+<<<<<<< HEAD
 
 				document.getElementById('reportesPatronesBarrios').addEventListener('click', function() {
 					const base_url = '<?php echo base_url(); ?>';
@@ -250,5 +274,17 @@
 				document.getElementById('reportesPatronesTipo').addEventListener('click', function() {
 					const base_url = '<?php echo base_url(); ?>';
 					window.open(base_url + 'ml_scripts/patrones_tipos.pdf', '_blank');
+=======
+				document.getElementById('reportesPatronesBarrios').addEventListener('click', function() {
+					const base_url = 'http://localhost/Seguridad_Ciudadana/';
+					window.open(base_url + 'incidencias/patrones_barrios', '_blank');
+				});
+				document.getElementById('reportesPatronesTipo').addEventListener('click', function() {
+					const base_url = 'http://localhost/Seguridad_Ciudadana/';
+					window.open(base_url + 'incidencias/patrones_tipos', '_blank');
+
+					// Muestra el mensaje de carga
+
+>>>>>>> c7656391e3640500f149c8f89428c702d686e55c
 				});
 			</script>

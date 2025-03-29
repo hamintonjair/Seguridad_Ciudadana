@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> c7656391e3640500f149c8f89428c702d686e55c
 # Importaciones estándar de Python
 import json
 import os
@@ -10,7 +14,11 @@ import matplotlib
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+<<<<<<< HEAD
 from flask import Flask, jsonify, request, send_from_directory
+=======
+from flask import Flask, jsonify
+>>>>>>> c7656391e3640500f149c8f89428c702d686e55c
 from flask_cors import CORS
 from sklearn.decomposition import PCA
 from sklearn.ensemble import RandomForestClassifier
@@ -18,7 +26,11 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from matplotlib.backends.backend_pdf import PdfPages
+<<<<<<< HEAD
 # import requests
+=======
+import requests
+>>>>>>> c7656391e3640500f149c8f89428c702d686e55c
 import base64
 
 matplotlib.use('Agg') 
@@ -26,6 +38,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Definir variables de entorno y rutas
+<<<<<<< HEAD
 base_path = os.path.dirname(os.path.abspath(__file__))
 base_path_two = os.getcwd()
 storage_path = os.path.join(base_path_two, 'static', 'pdfs')
@@ -55,6 +68,18 @@ if not os.path.exists(storage_path):
     os.makedirs(storage_path)
 
 
+=======
+base_path = os.path.dirname(__file__)  # Ruta base del proyecto en Render
+github_token = os.getenv('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')
+# Configuración del entorno
+repo = 'hamintonjair/ml_scripts'
+pdf_name1 = 'pdf_reporte_graficas.pdf'  # Nombre del primer PDF que vas a subir
+pdf_name2 = 'pdf_predictions.pdf'  # Nombre del segundo PDF que vas a subir
+pdf_path1 = os.path.join(base_path, pdf_name1)  # Ruta completa al primer archivo PDF
+pdf_path2 = os.path.join(base_path, pdf_name2)  # Ruta completa al segundo archivo PDF
+branch_name = 'main'  # Rama a la que quieres subir el archivo
+download_urls = {}
+>>>>>>> c7656391e3640500f149c8f89428c702d686e55c
 
 @app.route('/')
 def home():
@@ -67,6 +92,7 @@ def home():
         "descripcion": "Esta API permite entrenar un modelo de machine learning con datos de incidencias y generar predicciones basadas en ese modelo."
     })
 
+<<<<<<< HEAD
 @app.route('/static/<path:filename>', methods=['GET'])
 def serve_static_file(filename):
     return send_from_directory('static', filename, as_attachment=True)
@@ -77,6 +103,13 @@ def entrenar_modelo():
     print(type(data))
     print(data)
 
+=======
+@app.route('/entrenar_modelo', methods=['GET'])
+def entrenar_modelo():
+    # Cargar los datos desde el archivo JSON
+    json_path = os.path.join(base_path, 'datos_incidencias.json')
+    data = pd.read_json(json_path)
+>>>>>>> c7656391e3640500f149c8f89428c702d686e55c
 
     # Convertir columnas 'mes' y 'dia' a numéricas
     data['mes'] = pd.to_numeric(data['mes'], errors='coerce')
@@ -139,6 +172,7 @@ def entrenar_modelo():
     model_clasificacion.fit(X_train, y_train_clf)
 
     # Guardar los modelos y PCA
+<<<<<<< HEAD
     guardar_modelos(model_regresion, model_clasificacion, pca, le, X.columns)
 
     # Llamar a la función de predicción después de entrenar
@@ -147,11 +181,22 @@ def entrenar_modelo():
 
 def guardar_modelos(model_regresion, model_clasificacion, pca, le, columnas):
     # Guardar los modelos en la carpeta de almacenamiento
+=======
+   # Guardar modelos
+    guardar_modelos(model_regresion, model_clasificacion, pca, le, X.columns)
+
+    # Llamar a la función de predicción después de entrenar
+    return predicciones()
+
+def guardar_modelos(model_regresion, model_clasificacion, pca, le, columnas):
+      
+>>>>>>> c7656391e3640500f149c8f89428c702d686e55c
     joblib.dump(model_regresion, os.path.join(base_path, 'modelo_regresion.pkl'))
     joblib.dump(model_clasificacion, os.path.join(base_path, 'modelo_clasificacion.pkl'))
     joblib.dump(pca, os.path.join(base_path, 'modelo_pca.pkl'))
     joblib.dump(le, os.path.join(base_path, 'modelo_le.pkl'))
     joblib.dump(columnas, os.path.join(base_path, 'columnas.pkl'))
+<<<<<<< HEAD
 
     return jsonify({"mensaje": "Modelos entrenados y guardados en la carpeta de almacenamiento exitosamente."})
 
@@ -166,17 +211,68 @@ def predicciones(data):
     df = pd.DataFrame(data)
     # df = data
     print(df["mes"])
+=======
+    
+     # Lista de archivos a subir
+    archivos_modelos = [
+        ('modelo_regresion.pkl', os.path.join(base_path, 'modelo_regresion.pkl')),
+        ('modelo_clasificacion.pkl', os.path.join(base_path, 'modelo_clasificacion.pkl')),
+        ('modelo_pca.pkl', os.path.join(base_path, 'modelo_pca.pkl')),
+        ('modelo_le.pkl', os.path.join(base_path, 'modelo_le.pkl')),
+        ('columnas.pkl', os.path.join(base_path, 'columnas.pkl'))
+
+    ]
+
+    # Iterar sobre los archivos, eliminarlos si existen, y luego subirlos a GitHub
+    for file_name, file_path in archivos_modelos:
+        eliminar_archivo_si_existe(file_name)
+        subir_archivo_github(file_path, file_name)
+
+    return jsonify({"mensaje": "Modelos entrenados y subidos a GitHub exitosamente."})
+  
+#se obtienes las predicciones basado a los datos de la clasificacion
+@app.route('/predicciones', methods=['GET'])
+def predicciones():
+    # # Cargar los modelos
+    warnings.filterwarnings("ignore", message="X has feature names, but LinearRegression was fitted without feature names")
+
+    # Cargar los datos desde el archivo JSON
+    json_path = os.path.join(base_path, 'datos_incidencias.json')
+
+    try:
+        with open(json_path, 'r') as file:
+            data = json.load(file)
+    except json.JSONDecodeError as e:
+        print("Error al decodificar el JSON de entrada:", e)
+        sys.exit(1)
+    except FileNotFoundError as e:
+        print("Archivo JSON no encontrado:", e)
+        sys.exit(1)
+
+    # Convertir el JSON en un DataFrame de pandas
+    df = pd.DataFrame(data)
+>>>>>>> c7656391e3640500f149c8f89428c702d686e55c
 
     # Asegúrate de que los datos están en el formato correcto
     df['mes'] = pd.to_numeric(df['mes'], errors='coerce')
 
+<<<<<<< HEAD
     print(df.dtypes)
+=======
+    # Extraer la hora y los minutos desde la columna original
+    hora_original = df['hora']
+    df['hora'] = hora_original.str.split(':').str[0].astype(int)    # Extrae la hora como entero
+    df['minutos'] = hora_original.str.split(':').str[1].astype(int) # Extrae los minutos como entero
+>>>>>>> c7656391e3640500f149c8f89428c702d686e55c
 
     # Unificar hora y minutos en una sola columna con formato entero HHMM
     df['hora_unificada'] = df['hora'] * 100 + df['minutos']
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> c7656391e3640500f149c8f89428c702d686e55c
     # Definir la función para clasificar la hora unificada
     def clasificar_hora(hora_unificada):
         if 0 <= hora_unificada < 600:
@@ -321,6 +417,13 @@ def predicciones(data):
                  ha='center', va='center', transform=plt.gca().transAxes, fontsize=12)
         pdf.savefig()
         plt.close()
+<<<<<<< HEAD
+=======
+    #eliminar si existe 
+    eliminar_archivo_si_existe(pdf_name1)
+    subir_archivo_github(pdf_path1, pdf_name1)
+     # Llamar a la función para subir el PDF a GitHub
+>>>>>>> c7656391e3640500f149c8f89428c702d686e55c
 
     # Cargar modelos y PCA
     try:
@@ -415,6 +518,12 @@ def predicciones(data):
         pdf.savefig()
         plt.close()
                 
+<<<<<<< HEAD
+=======
+    #eliminar si existe 
+    eliminar_archivo_si_existe(pdf_name2)
+    subir_archivo2_github(pdf_path2, pdf_name2)
+>>>>>>> c7656391e3640500f149c8f89428c702d686e55c
     datos = {
             "pdf1_url": download_urls.get(pdf_name1),
             "pdf2_url": download_urls.get(pdf_name2),
@@ -422,12 +531,24 @@ def predicciones(data):
         }
     return jsonify({"mensaje": "Modelo entrenado y PDFs generados y subidos exitosamente.", "datos": datos})
 
+<<<<<<< HEAD
+=======
+    # return jsonify({"mensaje": "Predicción realizada con exito.", "datos": data})
+
+>>>>>>> c7656391e3640500f149c8f89428c702d686e55c
 
 # Función para guardar el archivo de resultados y subirlo a GitHub
 def guardar_resultados(df,resultados_csv_path):
     # Guardar los resultados en un archivo CSV local
     df.to_csv(resultados_csv_path, index=False)
 
+<<<<<<< HEAD
+=======
+    # Eliminar el archivo si ya existe en el repositorio y luego subir el nuevo
+    eliminar_archivo_si_existe('resultados_predicciones.csv')
+    subir_archivo_github(resultados_csv_path, 'resultados_predicciones.csv')
+
+>>>>>>> c7656391e3640500f149c8f89428c702d686e55c
     df.to_csv(resultados_csv_path, index=False)
     print(f"Predicciones guardadas en {resultados_csv_path}")
 
@@ -465,6 +586,7 @@ def guardar_resultados(df,resultados_csv_path):
 
 # Función para guardar los archivos CSV y subirlos a GitHub
 def guardar_patrones_csv(patrones_barrios, patrones_tipos):
+<<<<<<< HEAD
     """Guarda los patrones en archivos PDF con gráficas mejoradas"""
     try:
         # Crear figura para patrones de barrios
@@ -534,3 +656,120 @@ def guardar_patrones_csv(patrones_barrios, patrones_tipos):
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
+=======
+    # Guardar los resultados en archivos CSV para su posterior análisis
+    patrones_barrios_csv_path = os.path.join(base_path, 'patrones_barrios.csv')
+    patrones_tipos_csv_path = os.path.join(base_path, 'patrones_tipos.csv')
+
+    # Guardar los datos en archivos CSV locales
+    patrones_barrios.to_csv(patrones_barrios_csv_path, index=False)
+    patrones_tipos.to_csv(patrones_tipos_csv_path, index=False)
+
+    # Eliminar el archivo si ya existe en el repositorio y luego subir el nuevo
+    eliminar_archivo_si_existe('patrones_barrios.csv')
+    subir_archivo_github(patrones_barrios_csv_path, 'patrones_barrios.csv')
+
+    eliminar_archivo_si_existe('patrones_tipos.csv')
+    subir_archivo_github(patrones_tipos_csv_path, 'patrones_tipos.csv')
+
+    return jsonify({"mensaje": "Archivos de patrones guardados y subidos a GitHub exitosamente."})
+
+# Función para verificar si el archivo existe en github y eliminarlo si es necesario
+def eliminar_archivo_si_existe(pdf_name):
+    headers = {
+        'Authorization': f'token {github_token}',
+        'Accept': 'application/vnd.github.v3+json'
+    }
+
+    # Verificar si el archivo existe
+    response = requests.get(
+        f'https://api.github.com/repos/{repo}/contents/{pdf_name}?ref={branch_name}',
+        headers=headers
+    )
+
+    # Si el archivo existe, obtener el SHA y eliminarlo
+    if response.status_code == 200:
+        sha = response.json()['sha']
+        delete_response = requests.delete(
+            f'https://api.github.com/repos/{repo}/contents/{pdf_name}',
+            headers=headers,
+            json={
+                'message': f'Eliminar {pdf_name}',
+                'sha': sha,
+                'branch': branch_name
+            }
+        )
+
+        if delete_response.status_code == 200:
+            print(f'Archivo {pdf_name} eliminado correctamente.')
+        else:
+            print(f'Error al eliminar el archivo {pdf_name}: {delete_response.content}')
+    else:
+        print(f'El archivo {pdf_name} no existe en el repositorio.')
+# funciones para subir los archivos al epositorio de github
+def subir_archivo_github(pdf_path1, pdf_name1):
+    with open(pdf_path1, 'rb') as f:
+        pdf_content = f.read()
+        pdf_encoded = base64.b64encode(pdf_content).decode('utf-8')
+
+    headers = {
+        'Authorization': f'token {github_token}',
+        'Accept': 'application/vnd.github.v3+json'
+    }
+
+    # Subir el archivo
+    try:
+        response = requests.put(
+            f'https://api.github.com/repos/{repo}/contents/{pdf_name1}',
+            headers=headers,
+            json={
+                'message': f'Agregar {pdf_name1}',
+                'content': pdf_encoded,
+                'branch': branch_name
+            }
+        )
+        response.raise_for_status()
+        
+        # Retornar la URL del archivo subido
+        download_url = response.json()['content']['download_url']
+        download_urls[pdf_name1] = download_url
+        return download_url  # URL de descarga del archivo
+    except requests.exceptions.HTTPError as e:
+        print(f'Error al subir el archivo: {e}')
+        return None  # Retornar None en caso de error
+
+def subir_archivo2_github(pdf_path2, pdf_name2):
+    with open(pdf_path2, 'rb') as f:
+        pdf_content = f.read()
+        pdf_encoded = base64.b64encode(pdf_content).decode('utf-8')
+
+    headers = {
+        'Authorization': f'token {github_token}',
+        'Accept': 'application/vnd.github.v3+json'
+    }
+
+    # Subir el archivo
+    try:
+        response = requests.put(
+            f'https://api.github.com/repos/{repo}/contents/{pdf_name2}',
+            headers=headers,
+            json={
+                'message': f'Agregar {pdf_name2}',
+                'content': pdf_encoded,
+                'branch': branch_name
+            }
+        )
+        response.raise_for_status()
+        
+        # Retornar la URL del archivo subido
+        download_url = response.json()['content']['download_url']
+        download_urls[pdf_name2] = download_url
+        return download_url  # URL de descarga del archivo
+    except requests.exceptions.HTTPError as e:
+        print(f'Error al subir el archivo: {e}')
+        return None  # Retornar None en caso de error
+    
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", default=5000))  # Usa el puerto de Render o 5000 por defecto
+    app.run(debug=True,host='0.0.0.0', port=port)
+>>>>>>> c7656391e3640500f149c8f89428c702d686e55c

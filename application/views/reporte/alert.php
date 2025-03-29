@@ -3,7 +3,7 @@
     <div class="container mt-5">
         <div class="row">
             <div style="background-color:#f0f0f0; border-radius:30px;" id="vista-alertas" class="col-md-9">
-            <br>
+                <br>
                 <h4 style="color:black; text-align: center;">Alertas de Incidencias</h4>
                 <br>
                 <!-- Recorre y muestra las alertas de forma dinámica -->
@@ -78,11 +78,11 @@
 
             <script>
             // Variable para controlar si el usuario ha hecho clic en "Ver mapa"
-            var mapaAbierto = false;
+            let mapaAbierto = false;
 
             // Función para alternar la visibilidad del contenido
             function toggleContent(element) {
-                var content = element.querySelector('.content');
+                let content = element.querySelector('.content');
                 if (content.style.display === 'none') {
                     content.style.display = 'block';
                     if (!mapaAbierto) {
@@ -99,22 +99,23 @@
 
             // Función para generar un color aleatorio en formato hexadecimal
             function getRandomColor() {
-                var letters = '0123456789ABCDEF';
-                var color = '#';
-                for (var i = 0; i < 6; i++) {
+                let letters = '0123456789ABCDEF';
+                let color = '#';
+                for (let i = 0; i < 6; i++) {
                     color += letters[Math.floor(Math.random() * 16)];
                 }
                 return color;
             }
 
             // Obtener todas las alertas y asignarles un color aleatorio
-            var alerts = document.querySelectorAll('.alert');
+            let alerts = document.querySelectorAll('.alert');
             alerts.forEach(function(alert) {
                 alert.style.backgroundColor = getRandomColor();
             });
 
-            var map;
+            let map;
 
+            // Inicializa el mapa solo una vez
             function initMap() {
                 // Crea un mapa en el div con ID "mapa"
                 map = new google.maps.Map(document.getElementById('mapa'), {
@@ -122,15 +123,20 @@
                         lat: 0,
                         lng: 0
                     }, // Centra inicialmente en coordenadas neutras
-                    zoom: 15, // Puedes ajustar el nivel de zoom según tus necesidades
+                    zoom: 15 // Puedes ajustar el nivel de zoom según tus necesidades
                 });
             }
 
             // Variable para realizar un seguimiento de la alerta actualmente abierta
-            var alertaAbierta = null;
+            let alertaAbierta = null;
 
             function mostrarUbicacion(latitud, longitud) {
-                initMap();
+                // Verifica si el mapa ya está inicializado
+                if (!map) {
+                    console.error("El mapa no está inicializado");
+                    return;
+                }
+
                 // Verifica si hay una alerta abierta y si es así, ocúltala
                 if (alertaAbierta) {
                     alertaAbierta.setMap(null);
@@ -143,17 +149,19 @@
                 });
 
                 // Crea un marcador en las coordenadas
-                var marker = new google.maps.Marker({
+                let marker = new google.maps.Marker({
                     position: {
                         lat: parseFloat(latitud),
                         lng: parseFloat(longitud)
                     },
                     map: map,
-                    title: 'Ubicacion del incidente',
+                    title: 'Ubicación del incidente'
                 });
 
                 // Asigna el marcador a la variable de alerta abierta
                 alertaAbierta = marker;
             }
+
+            // Llama a initMap() al cargar la página
+            window.onload = initMap;
             </script>
-            

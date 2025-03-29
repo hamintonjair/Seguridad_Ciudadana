@@ -1,23 +1,38 @@
 <?php
-// Ruta al archivo CSV de patrones por tipo de incidencia
-$csv_path = 'C:\\xampp\\htdocs\\Seguridad_Ciudadana\\ml_scripts\\patrones_tipos.csv';
 
-// Verificar si el archivo existe y es legible
-if (!file_exists($csv_path) || !is_readable($csv_path)) {
-	die("El archivo CSV no existe o no es legible.");
+// URL pública del archivo CSV en GitHub
+$github_url = 'https://raw.githubusercontent.com/hamintonjair/ml_scripts/main/patrones_tipos.csv';
+
+// Descargar el archivo CSV desde GitHub
+$csv_content = file_get_contents($github_url);
+
+// Verificar si se obtuvo correctamente el contenido
+if ($csv_content === false) {
+    die("El archivo CSV no existe o no es legible. Verifica la URL: $github_url");
 }
 
-// Leer el archivo CSV
-$data = [];
-if (($handle = fopen($csv_path, 'r')) !== false) {
-	$header = fgetcsv($handle); // Leer la primera línea (cabecera)
-	while (($row = fgetcsv($handle)) !== false) {
-		$data[] = array_combine($header, $row); // Combinar cabecera con los datos de cada fila
-	}
-	fclose($handle);
+// Procesar el contenido del CSV
+$data = array_map('str_getcsv', explode("\n", trim($csv_content)));
+
+// Obtener la cabecera y los datos
+$header = array_shift($data); // Obtener la cabecera
+
+// Comprobar que la cabecera no esté vacía y procesar los datos
+if (!empty($header)) {
+    $data = array_filter($data); // Filtrar filas vacías
+    $data = array_map(function($row) use ($header) {
+        if (count($header) === count($row)) {
+            return array_combine($header, $row); // Combinar cabecera con los datos de cada fila
+        }
+        return null; // Devolver null si no coinciden las longitudes
+    }, $data);
+
+    // Filtrar nulos del resultado
+    $data = array_filter($data);
+} else {
+    die("La cabecera del CSV está vacía o no se pudo leer.");
 }
 
-// Generar el HTML
 ?>
 
 <style>

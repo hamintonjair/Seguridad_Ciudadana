@@ -12,7 +12,6 @@ class Panel extends CI_Controller
 
 	public function index()
 	{
-
 		$this->load->view('template/header');
 		$this->load->view('template/nabvar');
 		$this->load->view('template/body');
@@ -34,7 +33,6 @@ class Panel extends CI_Controller
 	public function registrar_incidencia()
 	{
 		// Obtén los datos del formulario
-
 		$nombre = $this->input->post('nombre');
 		$email = $this->input->post('email');
 
@@ -230,7 +228,6 @@ class Panel extends CI_Controller
 		$this->load->view('template/header');
 		$this->load->view('template/nabvar');
 		$this->load->view('reporte/patrones_barrios');
-		// $this->load->view('template/slider');
 		$this->load->view('template/footer');
 	}
 
@@ -240,21 +237,75 @@ class Panel extends CI_Controller
 		$this->load->view('template/header');
 		$this->load->view('template/nabvar');
 		$this->load->view('reporte/patrones_tipos');
-		// $this->load->view('template/slider');
 		$this->load->view('template/footer');
 	}
+<<<<<<< HEAD
 
 
+=======
+	// generar analisis con machine learning
+
+	// public function getDatosEstadisticasYPredicciones()
+	// {
+	// 	// Extraer los datos de la base de datos
+	// 	$datos = $this->ModelReporte->obtenerCantidadIncidenciasPorMes();
+
+	// 	// Asegúrate de que los datos sean un array si no lo son
+	// 	if (is_object($datos)) {
+	// 		$datos = json_decode(json_encode($datos), true);
+	// 	}
+
+	// 	// Guardar los datos en un archivo JSON
+	// 	$filePath = 'C:\\xampp\\htdocs\\Seguridad_Ciudadana\\ml_scripts\\datos_incidencias.json';
+	// 	file_put_contents($filePath, json_encode($datos));
+
+	// 	// Llamar a la API para entrenar el modelo y Predecir
+	// 	$trainResponse = @file_get_contents('http://localhost:5000/entrenar');
+	// 	if ($trainResponse === FALSE) {
+	// 		$error = error_get_last();
+	// 		echo json_encode(['error' => 'Error al entrenar el modelo y obtener predicciones: ' . $error['message']]);
+	// 		return;
+	// 	}
+	// 	$predicciones = json_decode($trainResponse, true);
+
+	// 	// // Llamar a la API para predecir
+	// 	// $predictResponse = @file_get_contents('http://localhost:5000/predecir');
+	// 	// if ($predictResponse === FALSE) {
+	// 	// 	$error = error_get_last();
+	// 	// 	echo json_encode(['error' => 'Error al obtener predicciones: ' . $error['message']]);
+	// 	// 	return;
+	// 	// }
+	// 	// $predicciones = json_decode($predictResponse, true);
+
+
+	// 	// Preparar el resultado
+	// 	$resultado = [
+	// 		// 'trainResult' => $trainResult,
+	// 		'predicciones' => $predicciones
+	// 	];
+
+	// 	// Devolver el resultado como JSON
+	// 	echo json_encode($resultado);
+	// }
+
+	// obtener los registros de las incidencias y convertirlo a JSON para subir a git
+>>>>>>> c7656391e3640500f149c8f89428c702d686e55c
 	public function getDatosEstadisticasYPredicciones()
 	{
-		// Extraer los datos de la base de datos
+	
+		// 1. Extraer los datos de la base de datos
 		$datos = $this->ModelReporte->obtenerCantidadIncidenciasPorMes();
 
+<<<<<<< HEAD
 		// Asegúrate de que los datos sean un array si no lo son
+=======
+		// 2. Asegúrate de que los datos sean un array si no lo son
+>>>>>>> c7656391e3640500f149c8f89428c702d686e55c
 		if (is_object($datos)) {
 			$datos = json_decode(json_encode($datos), true);
 		}
 
+<<<<<<< HEAD
 		// Cargar los datos del archivo JSON
 		$jsonData = json_encode($datos);
 
@@ -273,6 +324,82 @@ class Panel extends CI_Controller
 			'Content-Type: application/json',
 			'Content-Length: ' . strlen($jsonData)
 		]);
+=======
+		// 3. Convertir los datos a formato JSON
+		$jsonData = json_encode($datos, JSON_PRETTY_PRINT);
+
+		// 4. URL del repositorio en GitHub
+		$repoUrl = 'https://api.github.com/repos/hamintonjair/ml_scripts/contents/datos_incidencias.json';
+
+		// 5. Datos para actualizar el archivo en GitHub
+		$updateData = [
+			'message' => 'Actualización de datos de incidencias desde la aplicación PHP',
+			'content' => base64_encode($jsonData),
+			'sha' => $this->getFileSha($repoUrl) // Obtén el SHA del archivo existente
+		];
+
+		// 6. Configuración de la solicitud cURL para GitHub
+		$ch = curl_init($repoUrl);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, [
+			'Authorization: token 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',
+			'User-Agent: Mi-App',
+			'Content-Type: application/json'
+		]);
+
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT'); // Usar PUT para actualizar el archivo
+		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($updateData)); // Enviar datos JSON
+
+		// 7. Ejecutar la solicitud a GitHub
+		$response = curl_exec($ch);
+		// 8. Verificar si hubo errores en la solicitud
+		if ($response === false) {
+			$error = curl_error($ch);
+			echo json_encode(['error' => 'Error al actualizar datos en GitHub: ' . $error]);
+			curl_close($ch);
+			return;
+		}
+
+		// 9. Cerrar la solicitud cURL
+		curl_close($ch);
+
+		// 10. Decodificar la respuesta JSON de GitHub
+		$result = json_decode($response, true);
+		if (isset($result['error'])) {
+			echo json_encode(['error' => 'Error en la respuesta de GitHub: ' . $result['error']]);
+			return;
+		}
+
+		// 11. URL de la API en Render
+		$apiUrl = 'https://mi-api-seguridad.onrender.com/entrenar_modelo';
+
+		// 12. Configurar la solicitud cURL para la API
+		$ch = curl_init($apiUrl);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		// Ejecutar la solicitud y obtener la respuesta
+		$response = curl_exec($ch);
+
+		// Verificar si hubo errores en la solicitud
+		if ($response === false) {
+			$error = curl_error($ch);
+			echo json_encode(['error' => 'Error al entrenar el modelo y obtener predicciones: ' . $error]);
+			curl_close($ch);
+			return;
+		}
+
+		// Cerrar la solicitud cURL
+		curl_close($ch);
+
+		// Decodificar la respuesta JSON de la API
+		$predicciones = json_decode($response, true);
+
+		// Verificar si la decodificación fue exitosa
+		if (json_last_error() !== JSON_ERROR_NONE) {
+			echo json_encode(['error' => 'Error al procesar la respuesta de la API']);
+			return;
+		}
+>>>>>>> c7656391e3640500f149c8f89428c702d686e55c
 
 		// Ejecutar la solicitud y obtener la respuesta
 		$response = curl_exec($ch);
@@ -325,6 +452,27 @@ class Panel extends CI_Controller
 		echo json_encode($resultado);
 	}
 
+<<<<<<< HEAD
+=======
+	// Función para obtener el SHA del archivo existente
+	private function getFileSha($url)
+	{
+		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, [
+			'Authorization: token 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',
+			'User-Agent: Mi-App'
+		]);
+
+		$response = curl_exec($ch);
+		curl_close($ch);
+
+		$data = json_decode($response, true);
+		return $data['sha'] ?? null; // Retorna el SHA o null si no se encontró
+	}
+
+
+>>>>>>> c7656391e3640500f149c8f89428c702d686e55c
 
 	// registrar usuario
 	public function registrar_usuario()
