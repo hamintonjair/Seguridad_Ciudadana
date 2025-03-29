@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-09-2024 a las 18:36:11
+-- Tiempo de generación: 29-03-2025 a las 15:54:17
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.1.25
 
@@ -65,7 +65,8 @@ INSERT INTO `incidencias` (`id`, `tipo_incidencia`, `fecha`, `hora`, `barrio`, `
 (20, 'robo/hurto', '2024-09-09', '16:21', 'Sanvicente', 'Dos personas llegaron con arma de fuego y le dispararon a un señor', '5.685261919659202', '-76.6602130358422', 'default.png', 'alto', NULL, '09/09/2024 se envio un patrullero al lugar de los hechos', 'Finalizada', '2024-09-09 23:28:15', 'Haminton Jair Mena Mena', 'hamintonjair@gmail.com'),
 (21, 'accidente laborales', '2024-09-15', '09:21', 'Buenos aires', 'prueba ', '5.704857950511639', '-76.65285715584838', '20240916162208_Autoliquidaciones_72703939_Consolidado_page-0001.jpg', 'bajo', NULL, NULL, 'Finalizada', '2024-09-19 23:28:15', 'Duvan Mateo Mena', 'duvan3374@gmail.com'),
 (22, 'accidente laborales', '2024-09-15', '09:21', 'Buenos aires', 'prueba ', '5.704857950511639', '-76.65285715584838', '20240916162617_Autoliquidaciones_72703939_Consolidado_page-0001.jpg', 'bajo', NULL, NULL, 'Finalizada', '2024-09-14 23:28:15', 'Duvan Mateo Mena', 'duvan3374@gmail.com'),
-(23, 'robo/hurto', '2024-09-15', '09:26', 'Buenos aires', 'prueba', '5.70506537785176', '-76.65299926593006', '20240916162702_Autoliquidaciones_72703939_Consolidado_page-0001.jpg', 'bajo', NULL, NULL, 'En proceso', NULL, 'Duvan Mateo Mena', 'duvan3374@gmail.com');
+(23, 'robo/hurto', '2024-09-15', '09:26', 'Buenos aires', 'prueba', '5.70506537785176', '-76.65299926593006', '20240916162702_Autoliquidaciones_72703939_Consolidado_page-0001.jpg', 'bajo', NULL, NULL, 'En proceso', NULL, 'Duvan Mateo Mena', 'duvan3374@gmail.com'),
+(24, 'desastres', '2024-09-24', '10:19', 'kennedy', 'el atrato se llevo una casa', '5.705619451455383', '-76.65316247567135', '20240924171944_Captura_de_pantalla_2024-09-19_175934.png', 'alto', NULL, NULL, 'En proceso', NULL, 'Haminton Jair Mena Mena', 'hmenam@miuniclaretiana.edu.co');
 
 -- --------------------------------------------------------
 
@@ -129,6 +130,13 @@ CREATE TABLE `session_temporal` (
   `nombre` varchar(50) NOT NULL,
   `rol` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `session_temporal`
+--
+
+INSERT INTO `session_temporal` (`id`, `idUsuario`, `nombre`, `rol`) VALUES
+(53, 1, 'Administrador', 'admin');
 
 -- --------------------------------------------------------
 
@@ -197,7 +205,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `incidencias`
 --
 ALTER TABLE `incidencias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `lineas_emergencias`
@@ -215,7 +223,7 @@ ALTER TABLE `link`
 -- AUTO_INCREMENT de la tabla `session_temporal`
 --
 ALTER TABLE `session_temporal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

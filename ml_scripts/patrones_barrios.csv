@@ -1,8 +1,0 @@
-barrio,cantidad,cantidad_pred,prediccion_clasificacion_mode
-Buenos aires,4,1.1061338400469112,accidente laborales
-Medrano,3,1.1061338400469112,robo/hurto
-Sanvicente,3,1.109246951905359,robo/hurto
-aurora,1,1.137264958631392,robo/hurto
-entrada a sanvicente,1,1.137264958631392,robo/hurto
-palenque,2,1.1139166196930312,robo/hurto
-prueba,1,1.071889609603982,robo/hurto

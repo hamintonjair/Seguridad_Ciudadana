@@ -62,7 +62,8 @@
 <main>
 	<div class="container mt-5">
 		<div class="row justify-content-center">
-			<div style="background-color:#f0f0f0; text-align: center; border-radius:30px;" class="estadisticas-container col-md-9">
+			<div style="background-color:#f0f0f0; text-align: center; border-radius:30px;"
+				class="estadisticas-container col-md-9">
 				<br>
 				<h4 style="color:black">Estadísticas por mes</h4>
 
@@ -89,7 +90,7 @@
 
 			<script>
 				document.addEventListener('DOMContentLoaded', function() {
-					const base_url = 'http://localhost/Seguridad_Ciudadana/';
+					const base_url = '<?php echo base_url(); ?>';
 
 					// Obtener datos para el gráfico y predicciones
 					$.ajax({
@@ -164,7 +165,7 @@
 
 				// generar metricas de analisis de datos
 				document.getElementById('generarPdf').addEventListener('click', function() {
-					const base_url = 'http://localhost/Seguridad_Ciudadana/';
+					const base_url = '<?php echo base_url(); ?>';
 
 					// Muestra el mensaje de carga
 					Swal.fire({
@@ -175,46 +176,79 @@
 						}
 					});
 
-					// Obtener datos para el gráfico y predicciones
+					// Solicita los datos y genera las URLs para los PDFs
 					$.ajax({
 						url: base_url + 'panel/getDatosEstadisticasYPredicciones/',
 						type: 'GET',
 						dataType: 'json',
-						success: function(resultado) {
-							// Después de crear el gráfico, ocultar el mensaje de carga y mostrar un mensaje de confirmación
-							Swal.fire({
-								title: 'Generado PDF',
-								text: 'Se ha generando el PDF con las gráficas para el analisis.',
-								showConfirmButton: true
+						success: function(response) {
+							if (response.predicciones && response.predicciones.datos) {
+								const {
+									pdf1_url,
+									pdf2_url
+								} = response.predicciones.datos;
 
-							});
+								// Ocultar el mensaje de carga y mostrar confirmación
+								Swal.fire({
+									title: 'PDF Generado',
+									text: 'Los PDFs se han generado correctamente.',
+									showConfirmButton: true
+								});
+
+								// Validar y abrir automáticamente los PDFs en nuevas pestañas
+								if (pdf1_url) {
+									window.open(pdf1_url, '_blank');
+								}
+								if (pdf2_url) {
+									window.open(pdf2_url, '_blank');
+								}
+							} else if (response.predicciones && response.predicciones.error) {
+								// Mostrar el error específico
+								Swal.fire({
+									icon: 'error',
+									title: 'Error',
+									text: response.predicciones.error,
+									showConfirmButton: true
+								});
+							} else {
+								Swal.fire({
+									icon: 'error',
+									title: 'Error en la respuesta del servidor',
+									text: 'No se pudieron obtener los datos necesarios.',
+									showConfirmButton: true
+								});
+							}
 						},
-						error: function(error) {
+						error: function(xhr, status, error) {
+							let errorMessage = 'Error al generar las gráficas.';
+							if (xhr.responseJSON && xhr.responseJSON.predicciones && xhr.responseJSON
+								.predicciones.error) {
+								errorMessage = xhr.responseJSON.predicciones.error;
+							}
+
 							Swal.fire({
 								icon: 'error',
-								title: 'Error al generar las gráficas.',
-								text: 'No se pudieron obtener los datos para el gráfico.',
+								title: 'Error',
+								text: errorMessage,
 								showConfirmButton: true
 							});
 						}
 					});
 				});
 
-				
-				// para oculyat los botones
+				// Opcional: Mostrar u ocultar botones después de generar PDFs
 				document.getElementById('generarPdf').addEventListener('click', function() {
 					document.getElementById('reportesPatronesBarrios').style.display = 'inline-block';
 					document.getElementById('reportesPatronesTipo').style.display = 'inline-block';
 				});
-				document.getElementById('reportesPatronesBarrios').addEventListener('click', function() {
-					const base_url = 'http://localhost/Seguridad_Ciudadana/';
-					window.open(base_url + 'incidencias/patrones_barrios', '_blank');
-				});
-				document.getElementById('reportesPatronesTipo').addEventListener('click', function() {
-					const base_url = 'http://localhost/Seguridad_Ciudadana/';
-					window.open( base_url + 'incidencias/patrones_tipos', '_blank');
 
-					// Muestra el mensaje de carga
-				
+				document.getElementById('reportesPatronesBarrios').addEventListener('click', function() {
+					const base_url = '<?php echo base_url(); ?>';
+					window.open(base_url + 'ml_scripts/patrones_barrios.pdf', '_blank');
+				});
+
+				document.getElementById('reportesPatronesTipo').addEventListener('click', function() {
+					const base_url = '<?php echo base_url(); ?>';
+					window.open(base_url + 'ml_scripts/patrones_tipos.pdf', '_blank');
 				});
 			</script>

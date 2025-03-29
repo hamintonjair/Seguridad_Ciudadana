@@ -116,118 +116,6 @@ class Panel extends CI_Controller
 		die;
 	}
 
-	// public function registrar_incidencia()
-	// {
-	// 	// Obtén los datos del formulario
-	// 	$nombre = $this->input->post('nombre');
-	// 	$email = $this->input->post('email');
-	// 	$tipo_incidencia = $this->input->post('tipo_incidencia');
-	// 	$fecha = $this->input->post('fecha');
-	// 	$hora = $this->input->post('hora');
-	// 	$barrio = $this->input->post('barrio');
-	// 	$descripcion = $this->input->post('descripcion');
-	// 	$urgencia = $this->input->post('urgencia');
-	// 	$latitud = $this->input->post('coordenadas');
-	// 	$longitud = $this->input->post('coordenadas1');
-
-	// 	// Validación de datos
-	// 	if (!$nombre || !$email || !$tipo_incidencia || !$fecha || !$hora || !$barrio || !$descripcion || !$urgencia || !$latitud || !$longitud) {
-	// 		echo json_encode(['ok' => false, 'post' => 'Datos incompletos.'], JSON_UNESCAPED_UNICODE);
-	// 		die;
-	// 	}
-
-	// 	// Manejo del usuario autenticado
-	// 	$validado = $this->ModelReporte->get_Session();
-	// 	if (!empty($validado)) {
-	// 		$idUsuario  = $validado[0]->idUsuario;
-	// 		$usuario = $this->ModelReporte->get_usuario($idUsuario);
-	// 		$nombre_anonimo = $usuario[0]->nombre;
-	// 		$correo_anonimo = $usuario[0]->correo;
-	// 	} else {
-	// 		$idUsuario = null;
-	// 		$nombre_anonimo = $nombre;
-	// 		$correo_anonimo = $email;
-	// 	}
-	// 	$incidencia = ($tipo_incidencia == "otro") ? $this->input->post('otro_campo_input') : $tipo_incidencia;
-
-	// 	// Manejo del archivo subido
-	// 	if (!empty($_FILES['fotoInput']['name'])) {
-	// 		$config['upload_path'] = './uploads/';
-	// 		$config['allowed_types'] = 'jpg|jpeg|png';
-	// 		$config['max_size'] = 2048;
-	// 		$config['file_name'] = date('YmdHis') . '_' . $_FILES['fotoInput']['name'];
-
-	// 		$this->load->library('upload', $config);
-
-	// 		if ($this->upload->do_upload('fotoInput')) {
-	// 			$upload_data = $this->upload->data();
-	// 			$adjuntos = $upload_data['file_name'];
-	// 		} else {
-	// 			$error = $this->upload->display_errors();
-	// 			echo json_encode(['ok' => false, 'post' => 'Error al subir el archivo: ' . $error], JSON_UNESCAPED_UNICODE);
-	// 			return;
-	// 		}
-	// 	} else {
-	// 		$adjuntos = 'default.png';
-	// 	}
-
-	// 	// Inserta los datos en la base de datos
-	// 	$data = $this->ModelReporte->guardar_incidencia(
-	// 		$incidencia,
-	// 		$fecha,
-	// 		$hora,
-	// 		$barrio,
-	// 		$descripcion,
-	// 		$urgencia,
-	// 		$latitud,
-	// 		$longitud,
-	// 		$adjuntos,
-	// 		$idUsuario,
-	// 		$nombre_anonimo,
-	// 		$correo_anonimo
-	// 	);
-
-	// 	if ($data) {
-	// 		// Prepara los datos para la clasificación
-	// 		$nuevo_reporte = [
-	// 			'incidencia' => $incidencia,
-	// 			'fecha' => $fecha,
-	// 			'hora' => $hora,
-	// 			'barrio' => $barrio,
-	// 			'descripcion' => $descripcion,
-	// 			'urgencia' => $urgencia,
-	// 			'latitud' => $latitud,
-	// 			'longitud' => $longitud
-	// 		];
-
-	// 		// Convertir el reporte a JSON
-	// 		$reporte = json_encode($nuevo_reporte);
-
-	// 		// Ejecutar el script de clasificación
-	// 		$output = shell_exec('python ' . FCPATH . 'ml_scripts/classify_incidence.py ' . escapeshellarg($reporte));
-	// 		$resultado = json_decode($output, true);
-
-	// 		// Ejecutar el script de predicción de tendencias
-	// 		$output = shell_exec('python ' . FCPATH . 'ml_scripts/predict_trends.py');
-	// 		$predicciones = json_decode($output, true);
-
-	// 		// Respuesta al cliente
-	// 		$msg = [
-	// 			'ok' => true,
-	// 			'post' => 'Incidencia registrada con éxito.',
-	// 			'resultado' => $resultado,
-	// 			'predicciones' => $predicciones
-	// 		];
-	// 	} else {
-	// 		$msg = ['ok' => false, 'post' => 'Error al registrar la Incidencia.'];
-	// 	}
-
-	// 	echo json_encode($msg, JSON_UNESCAPED_UNICODE);
-	// 	die;
-	// }
-
-
-
 	//alertas
 	public function alertas()
 	{
@@ -336,8 +224,9 @@ class Panel extends CI_Controller
 		echo json_encode($datos);
 	}
 
-	public function patrones_barrios(){
-		
+	public function patrones_barrios()
+	{
+
 		$this->load->view('template/header');
 		$this->load->view('template/nabvar');
 		$this->load->view('reporte/patrones_barrios');
@@ -345,44 +234,89 @@ class Panel extends CI_Controller
 		$this->load->view('template/footer');
 	}
 
-	public function patrones_tipos(){
-		
+	public function patrones_tipos()
+	{
+
 		$this->load->view('template/header');
 		$this->load->view('template/nabvar');
 		$this->load->view('reporte/patrones_tipos');
 		// $this->load->view('template/slider');
 		$this->load->view('template/footer');
 	}
-	// generar analisis con machine learning
+
+
 	public function getDatosEstadisticasYPredicciones()
 	{
 		// Extraer los datos de la base de datos
 		$datos = $this->ModelReporte->obtenerCantidadIncidenciasPorMes();
-
 
 		// Asegúrate de que los datos sean un array si no lo son
 		if (is_object($datos)) {
 			$datos = json_decode(json_encode($datos), true);
 		}
 
-		// Guardar los datos en un archivo JSON
-		$filePath = 'C:\\xampp\\htdocs\\Seguridad_Ciudadana\\ml_scripts\\datos_incidencias.json';
-		file_put_contents($filePath, json_encode($datos));
+		// Cargar los datos del archivo JSON
+		$jsonData = json_encode($datos);
 
-		// Ejecutar el script Python para entrenar el modelo
-		$trainCommand = 'C:\\Users\\Mafia\\AppData\\Local\\Programs\\Python\\Python39\\python.exe C:\\xampp\\htdocs\\Seguridad_Ciudadana\\ml_scripts\\entrenar_modelo.py';
-		$output =shell_exec($trainCommand . ' 2>&1');
+		// URL de la API local (servidor Flask)
+		$apiUrl = 'http://127.0.0.1:5001/entrenar_modelo';
 
-		// Ejecutar el script Python para predecir
-		$predictCommand = 'C:\\Users\\Mafia\\AppData\\Local\\Programs\\Python\\Python39\\python.exe C:\\xampp\\htdocs\\Seguridad_Ciudadana\\ml_scripts\\predecir.py';
-		$output =	$output = shell_exec("$predictCommand 2>&1");
-		// Guardar la salida en un archivo para depuración
-		file_put_contents('C:\\xampp\\htdocs\\Seguridad_Ciudadana\\ml_scripts\\output.txt', $output);
+		// Iniciar una nueva sesión cURL
+		$ch = curl_init();
 
-		// Decodificar el JSON de las predicciones
-		$predicciones = json_decode($output, true);
+		// Configurar las opciones de cURL para enviar la solicitud POST
+		curl_setopt($ch, CURLOPT_URL, $apiUrl);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, [
+			'Content-Type: application/json',
+			'Content-Length: ' . strlen($jsonData)
+		]);
 
-		// Preparar el resultado
+		// Ejecutar la solicitud y obtener la respuesta
+		$response = curl_exec($ch);
+
+		// Verificar si hubo algún error con la solicitud cURL
+		if (curl_errno($ch)) {
+			$error = curl_error($ch);
+			curl_close($ch);
+			echo json_encode([
+				'predicciones' => [
+					'error' => 'Error de conexión: ' . $error
+				]
+			]);
+			return;
+		}
+
+		// Obtener el código de estado HTTP
+		$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		curl_close($ch);
+
+		// Verificar si la respuesta fue exitosa
+		if ($httpCode !== 200) {
+			echo json_encode([
+				'predicciones' => [
+					'error' => 'Error del servidor: ' . $httpCode
+				]
+			]);
+			return;
+		}
+
+		// Decodificar la respuesta de la API
+		$predicciones = json_decode($response, true);
+
+		// Verificar si la decodificación fue exitosa
+		if (json_last_error() !== JSON_ERROR_NONE) {
+			echo json_encode([
+				'predicciones' => [
+					'error' => 'Error al decodificar la respuesta: ' . json_last_error_msg()
+				]
+			]);
+			return;
+		}
+
+		// Preparar el resultado para devolver
 		$resultado = [
 			'predicciones' => $predicciones
 		];
@@ -390,6 +324,7 @@ class Panel extends CI_Controller
 		// Devolver el resultado como JSON
 		echo json_encode($resultado);
 	}
+
 
 	// registrar usuario
 	public function registrar_usuario()
